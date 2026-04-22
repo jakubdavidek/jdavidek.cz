@@ -503,7 +503,7 @@
                   ['firma1.png', 'firma2.png', 'firma3.png', 'firma4.png', 'firma5.png', 'firma6.png', 'firma7.png'].map((name, j) =>
                     <img
                       key={`${i}-${j}`}
-                      src={`/public/${name}`}
+                      src={`./public/${name}`}
                       alt={name.replace('.png', '')}
                       style={{ height: '40px', width: 'auto', maxWidth: '140px', objectFit: 'contain', opacity: 0.55, filter: 'grayscale(100%)', display: 'inline-block', verticalAlign: 'middle', flexShrink: 0 }}
                     />
