@@ -162,17 +162,27 @@
       }
     }
 
-    .marquee {
+    .marquee-track {
       display: flex;
-      align-items: center;
-      gap: 4rem;
+      width: max-content;
       animation: marquee 36s linear infinite;
     }
 
+    .marquee-group {
+      display: flex;
+      align-items: center;
+      gap: 4rem;
+      padding-right: 4rem;
+    }
+
     @media (max-width: 768px) {
-      .marquee {
+      .marquee-track {
+        animation-duration: 18s;
+      }
+
+      .marquee-group {
         gap: 2.5rem;
-        animation-duration: 6s;
+        padding-right: 2.5rem;
       }
     }
 
@@ -605,17 +615,19 @@
               Důvěřují nám
             </div>
             <div className="overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_10%,black_90%,transparent)]">
-              <div className="marquee whitespace-nowrap items-center">
-                {[...Array(2)].flatMap((_, i) =>
-                  ['firma1.png', 'firma2.png', 'firma3.png', 'firma4.png', 'firma5.png', 'firma6.png', 'firma7.png'].map((name, j) =>
-                    <img
-                      key={`${i}-${j}`}
-                      src={`${BASE_URL}public/${name}`}
-                      alt={name.replace('.png', '')}
-                      style={{ height: '40px', width: 'auto', maxWidth: '140px', objectFit: 'contain', opacity: 0.55, filter: 'grayscale(100%)', display: 'inline-block', verticalAlign: 'middle', flexShrink: 0 }}
-                    />
-                  )
-                )}
+              <div className="marquee-track">
+                {[0, 1].map((copy) => (
+                  <div key={copy} className="marquee-group" aria-hidden={copy === 1 ? 'true' : undefined}>
+                    {['firma1.png', 'firma2.png', 'firma3.png', 'firma4.png', 'firma5.png', 'firma6.png', 'firma7.png'].map((name) =>
+                      <img
+                        key={name}
+                        src={`${BASE_URL}public/${name}`}
+                        alt={copy === 0 ? name.replace('.png', '') : ''}
+                        style={{ height: '40px', width: 'auto', maxWidth: '140px', objectFit: 'contain', opacity: 0.55, filter: 'grayscale(100%)', display: 'block', flexShrink: 0 }}
+                      />
+                    )}
+                  </div>
+                ))}
               </div>
             </div>
           </div>
