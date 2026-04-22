@@ -4,7 +4,27 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CleanPro – Profesionální úklidové služby</title>
+  <title>Čištění aut a úklid Plzeň | Jiří Davídek – čisticí služby</title>
+  <meta name="description"
+    content="Profesionální čištění interiérů aut, tepování, úklid kanceláří a vysokotlaké čištění v Plzni a okolí. Nezávazná cenová nabídka do 24 h. Tel: +420 606 513 793." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://jdavidek.cz/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Čištění aut a úklid Plzeň | Jiří Davídek" />
+  <meta property="og:description"
+    content="Tepování, čištění fasád a úklid prostor v Plzni. 500+ spokojených klientů, pojištění do 5 mil. Kč." />
+  <meta property="og:url" content="https://jdavidek.cz/" />
+  <meta property="og:image" content="https://jdavidek.cz/public/foto1.jpg" />
+  <meta property="og:locale" content="cs_CZ" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Čištění aut a úklid Plzeň | Jiří Davídek" />
+  <meta name="twitter:description"
+    content="Tepování, čištění fasád a úklid prostor v Plzni. Nezávazná nabídka do 24 h." />
+  <meta name="twitter:image" content="https://jdavidek.cz/public/foto1.jpg" />
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -231,9 +251,87 @@
       font-weight: 700;
     }
   </style>
+
+  <!-- LocalBusiness Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Jiří Davídek – čisticí služby",
+    "image": "https://jdavidek.cz/public/foto1.jpg",
+    "url": "https://jdavidek.cz",
+    "telephone": "+420606513793",
+    "email": "jdavidek@centrum.cz",
+    "priceRange": "$$",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Plzeň",
+      "addressRegion": "Plzeňský kraj",
+      "addressCountry": "CZ"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 49.7384,
+      "longitude": 13.3736
+    },
+    "areaServed": {
+      "@type": "GeoCircle",
+      "geoMidpoint": {
+        "@type": "GeoCoordinates",
+        "latitude": 49.7384,
+        "longitude": 13.3736
+      },
+      "geoRadius": "50000"
+    },
+    "openingHoursSpecification": [{
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+      "opens": "07:00",
+      "closes": "20:00"
+    }],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Čisticí služby",
+      "itemListElement": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Čištění interiérů vozidel" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Úklid prostor" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Vysokotlaké čištění" } }
+      ]
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "500"
+    }
+  }
+  </script>
 </head>
 
 <body class="bg-white">
+
+  <!-- Noscript fallback for crawlers / JS-disabled browsers -->
+  <noscript>
+    <main style="max-width:800px;margin:40px auto;padding:0 20px;font-family:sans-serif;color:#1a1410;">
+      <h1>Jiří Davídek – čisticí služby Plzeň</h1>
+      <p>Profesionální čištění interiérů aut, tepování, úklid kanceláří a vysokotlaké čištění v Plzni a okolí. 20 let
+        zkušeností, pojištění do 5 mil. Kč, nezávazná cenová nabídka do 24 hodin.</p>
+      <h2>Naše služby</h2>
+      <ul>
+        <li><strong>Čištění interiérů vozidel</strong> – tepování sedadel a koberců, renovace kůže a plastů, ozonizace
+          proti pachům</li>
+        <li><strong>Úklid prostor</strong> – kanceláře, domácnosti, komerční objekty, po-stavební úklidy, mytí oken</li>
+        <li><strong>Vysokotlaké čištění</strong> – fasády, dlažby, střechy a okapové systémy technikou Kärcher HDS</li>
+      </ul>
+      <h2>Kontakt</h2>
+      <p>
+        Tel: <a href="tel:+420606513793">+420 606 513 793</a><br>
+        E-mail: <a href="mailto:jdavidek@centrum.cz">jdavidek@centrum.cz</a><br>
+        Působíme: Plzeň a okolí do 50 km (Rokycany, Stod, Přeštice)<br>
+        Otevírací doba: Po–Pá 7:00–20:00
+      </p>
+    </main>
+  </noscript>
+
   <div id="root"></div>
 
   <script type="text/babel" data-presets="react">
