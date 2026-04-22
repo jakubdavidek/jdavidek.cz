@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CleanPro – Profesionální úklidové služby</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js"
+    integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L"
+    crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"
+    integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm"
+    crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"
+    integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y"
+    crossorigin="anonymous"></script>
+  <script type="module">
+    import { createElement } from "https://esm.sh/react@18.3.1";
+    import * as Lucide from "https://esm.sh/lucide-react@0.445.0?deps=react@18.3.1";
+    window.Lucide = Lucide;
+    window.__lucideReady = true;
+    window.dispatchEvent(new Event('lucide-ready'));
+  </script>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      color: #1a1410;
+    }
+
+    .brand-gradient {
+      background: linear-gradient(135deg, #2a1a0c 0%, #5a2e00 45%, #b84d00 100%);
+    }
+
+    .hero-bg {
+      background:
+        radial-gradient(1200px 600px at 85% -10%, rgba(234, 108, 0, 0.14), transparent 60%),
+        radial-gradient(900px 500px at -10% 20%, rgba(245, 148, 69, 0.12), transparent 60%),
+        linear-gradient(180deg, #FFF8F1 0%, #FFFFFF 70%);
+    }
+
+    .service-card {
+      transition: transform 300ms cubic-bezier(.2, .7, .2, 1), box-shadow 300ms ease, border-color 300ms ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px -20px rgba(58, 31, 8, 0.22), 0 8px 16px -8px rgba(234, 108, 0, 0.18);
+    }
+
+    .btn-primary {
+      transition: transform 200ms ease, box-shadow 250ms ease, background-color 200ms ease;
+      box-shadow: 0 10px 24px -10px rgba(14, 116, 182, 0.55);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 30px -12px rgba(14, 116, 182, 0.65);
+    }
+
+    .btn-secondary {
+      transition: transform 200ms ease, border-color 200ms ease, background-color 200ms ease;
+    }
+
+    .btn-secondary:hover {
+      transform: translateY(-2px);
+    }
+
+    .benefit-card {
+      transition: transform 250ms ease, box-shadow 250ms ease;
+    }
+
+    .benefit-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 28px -14px rgba(58, 31, 8, 0.22);
+    }
+
+    .grain::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(255, 255, 255, .05) 1px, transparent 1px);
+      background-size: 3px 3px;
+      pointer-events: none;
+      mix-blend-mode: overlay;
+    }
+
+    .dot-grid {
+      background-image: radial-gradient(rgba(58, 31, 8, 0.10) 1px, transparent 1px);
+      background-size: 22px 22px;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      outline: none;
+    }
+
+    .field {
+      transition: border-color 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+    }
+
+    .field:focus {
+      border-color: #ea6c00;
+      box-shadow: 0 0 0 4px rgba(234, 108, 0, 0.14);
+      background: white;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 700ms ease, transform 700ms cubic-bezier(.2, .7, .2, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .shine {
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, .35) 50%, rgba(255, 255, 255, 0) 100%);
+      background-size: 200% 100%;
+      animation: shine 2.8s infinite linear;
+    }
+
+    @keyframes shine {
+      0% {
+        background-position: 200% 0;
+      }
+
+      100% {
+        background-position: -200% 0;
+      }
+    }
+
+    .marquee {
+      display: flex;
+      align-items: center;
+      gap: 4rem;
+      animation: marquee 36s linear infinite;
+    }
+
+    @keyframes marquee {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* Legal page typography */
+    .prose-legal {
+      color: #334155;
+      font-size: 16px;
+      line-height: 1.75;
+    }
+
+    .prose-legal .lead {
+      font-size: 18px;
+      color: #57463a;
+      line-height: 1.7;
+      padding: 20px 24px;
+      background: #FFF4E6;
+      border-left: 3px solid #ea6c00;
+      border-radius: 0 12px 12px 0;
+      margin-bottom: 2.5rem;
+    }
+
+    .prose-legal h2 {
+      font-size: 22px;
+      font-weight: 700;
+      color: #3a1f08;
+      margin-top: 2.5rem;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.01em;
+    }
+
+    .prose-legal p {
+      margin-bottom: 1.1rem;
+    }
+
+    .prose-legal ul {
+      list-style: none;
+      padding-left: 0;
+      margin: 1rem 0 1.5rem;
+    }
+
+    .prose-legal ul li {
+      position: relative;
+      padding-left: 1.5rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .prose-legal ul li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.7em;
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #ea6c00;
+    }
+
+    .prose-legal a {
+      color: #b84d00;
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(234, 108, 0, 0.35);
+      transition: all 0.2s;
+    }
+
+    .prose-legal a:hover {
+      color: #ea6c00;
+      border-bottom-color: #ea6c00;
+    }
+
+    .prose-legal strong {
+      color: #3a1f08;
+      font-weight: 700;
+    }
+  </style>
+</head>
+
+<body class="bg-white">
+  <div id="root"></div>
+
+  <script type="text/babel" data-presets="react">
+
+    const { useState, useEffect, useRef } = React;
+
+    /* ---------- Fallback icon (simple square) for the brief moment Lucide loads ---------- */
+    const Stub = ({ className = "", ...p }) =>
+      <span className={`inline-block ${className}`} style={{ width: '1em', height: '1em' }} {...p} />;
+
+
+    /* Handy hook so we grab lucide icons only after the ESM import resolves */
+    function useLucide() {
+      const [ready, setReady] = useState(!!window.__lucideReady);
+      useEffect(() => {
+        if (ready) return;
+        const h = () => setReady(true);
+        window.addEventListener('lucide-ready', h);
+        return () => window.removeEventListener('lucide-ready', h);
+      }, [ready]);
+      const L = window.Lucide || {};
+      const get = (name) => L[name] || Stub;
+      return { ready, get };
+    }
+
+    /* ---------- Reveal on scroll ---------- */
+    function Reveal({ children, delay = 0, className = "" }) {
+      const ref = useRef(null);
+      useEffect(() => {
+        const el = ref.current;
+        if (!el) return;
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              setTimeout(() => el.classList.add('visible'), delay);
+              io.unobserve(el);
+            }
+          });
+        }, { threshold: 0.12 });
+        io.observe(el);
+        return () => io.disconnect();
+      }, [delay]);
+      return <div ref={ref} className={`reveal ${className}`}>{children}</div>;
+    }
+
+    /* ---------- Logo ---------- */
+    function Logo({ dark = false }) {
+      return (
+        <a href="#" className="inline-flex flex-col leading-none group select-none"
+          style={{ textDecoration: 'none' }}>
+          <span
+            style={{
+              fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+              fontWeight: 800,
+              fontSize: '1.25rem',
+              letterSpacing: '-0.02em',
+              lineHeight: 1.1,
+              color: dark ? '#ffffff' : '#1a0e06',
+            }}>
+            Jiří Davídek
+          </span>
+          <span
+            style={{
+              fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+              fontWeight: 700,
+              fontSize: '0.62rem',
+              letterSpacing: '0.18em',
+              textTransform: 'uppercase',
+              color: '#ea6c00',
+              lineHeight: 1,
+              marginTop: '3px',
+            }}>
+            Čisticí služby
+          </span>
+        </a>
+      );
+    }
+
+    /* ---------- Header ---------- */
+    function Header() {
+      const { get } = useLucide();
+      const Phone = get('Phone');
+      const Menu = get('Menu');
+      const X = get('X');
+      const [open, setOpen] = useState(false);
+      const [scrolled, setScrolled] = useState(false);
+      useEffect(() => {
+        const h = () => setScrolled(window.scrollY > 8);
+        h(); window.addEventListener('scroll', h, { passive: true });
+        return () => window.removeEventListener('scroll', h);
+      }, []);
+      const links = [
+        ['Služby', '#sluzby'],
+        ['Proč my', '#proc-my'],
+        ['Reference', '#reference'],
+        ['Kontakt', '#kontakt']];
+
+      return (
+        <header className={`fixed top-0 inset-x-0 z-50 transition-all ${scrolled ? 'backdrop-blur-md bg-white/85 border-b border-slate-200/70' : 'bg-transparent'}`}>
+          <div className="max-w-7xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between">
+            <Logo />
+            <nav className="hidden md:flex items-center gap-8">
+              {links.map(([label, href]) =>
+                <a key={href} href={href}
+                  className="text-sm font-medium text-slate-700 hover:text-[#3a1f08] transition-colors relative after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-[#ea6c00] hover:after:w-full after:transition-all">
+                  {label}
+                </a>
+              )}
+            </nav>
+            <div className="hidden md:flex items-center gap-3">
+              <a href="tel:+420606513793" className="flex items-center gap-2 text-sm font-semibold text-[#3a1f08] hover:text-[#ea6c00] transition-colors">
+                <Phone className="w-4 h-4" /> +420 606 513 793
+              </a>
+              <a href="#kontakt"
+                className="btn-primary inline-flex items-center gap-2 bg-[#3a1f08] hover:bg-[#5a2e00] text-white text-sm font-semibold px-5 py-2.5 rounded-full">
+                Nezávazná poptávka
+              </a>
+            </div>
+            <button className="md:hidden p-2 rounded-lg text-[#3a1f08]" onClick={() => setOpen(!open)} aria-label="Menu">
+              {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
+          {open &&
+            <div className="md:hidden bg-white border-t border-slate-200 px-5 py-4 space-y-3">
+              {links.map(([label, href]) =>
+                <a key={href} href={href} onClick={() => setOpen(false)}
+                  className="block text-base font-medium text-slate-700">{label}</a>
+              )}
+              <a href="#kontakt" onClick={() => setOpen(false)}
+                className="block text-center bg-[#3a1f08] text-white font-semibold px-5 py-3 rounded-full">
+                Nezávazná poptávka
+              </a>
+            </div>
+          }
+        </header>);
+
+    }
+
+    /* ---------- Hero ---------- */
+    function Hero() {
+      const { get } = useLucide();
+      const ArrowRight = get('ArrowRight');
+      const Check = get('Check');
+      const Star = get('Star');
+      const Shield = get('ShieldCheck');
+      const Car = get('Car');
+      const Building2 = get('Building2');
+      const Droplets = get('Droplets');
+
+      return (
+        <section className="relative hero-bg pt-28 pb-24 md:pt-36 md:pb-32 overflow-hidden">
+          <div className="absolute inset-0 dot-grid opacity-40 [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_75%)]"></div>
+          <div className="relative max-w-7xl mx-auto px-5 sm:px-8 grid lg:grid-cols-12 gap-12 items-center">
+            <div className="lg:col-span-7">
+              <Reveal>
+                <div className="inline-flex items-center gap-2 bg-white border border-slate-200 rounded-full px-3.5 py-1.5 shadow-sm">
+                  <span className="flex -space-x-1">
+                    {[0, 1, 2, 3, 4].map((i) => <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />)}
+                  </span>
+                  <span className="text-xs font-semibold text-slate-700">4,9 z 5 · přes 500 spokojených klientů</span>
+                </div>
+              </Reveal>
+              <Reveal delay={80}>
+                <h1 className="mt-6 text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.05] text-[#3a1f08]">
+                  Profesionální čistota <br className="hidden sm:block" />
+                  pro vaše <span className="relative inline-block">
+                    <span className="relative z-10 text-[#ea6c00]">auta i prostory</span>
+                    <span className="absolute left-0 right-0 bottom-1 h-3 bg-amber-200/70 -z-0 rounded"></span>
+                  </span>.
+                </h1>
+              </Reveal>
+              <Reveal delay={160}>
+                <p className="mt-6 text-lg text-slate-600 max-w-xl leading-relaxed">
+                  Špičková technika, poctivá ruční práce a viditelný výsledek.
+                  Postaráme se o váš vůz, kancelář i dlažbu. Rychle, šetrně a bez kompromisů.
+                </p>
+              </Reveal>
+              <Reveal delay={240}>
+                <div className="mt-8 flex flex-wrap gap-3">
+                  <a href="#sluzby"
+                    className="btn-primary inline-flex items-center gap-2 bg-[#3a1f08] hover:bg-[#5a2e00] text-white font-semibold px-6 py-3.5 rounded-full">
+                    Naše služby <ArrowRight className="w-4 h-4" />
+                  </a>
+                  <a href="#kontakt"
+                    className="btn-secondary inline-flex items-center gap-2 bg-white border-2 border-[#3a1f08] text-[#3a1f08] hover:bg-[#3a1f08] hover:text-white font-semibold px-6 py-3.5 rounded-full">
+                    Chci cenovou nabídku
+                  </a>
+                </div>
+              </Reveal>
+              <Reveal delay={320}>
+                <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-slate-600">
+                  {['Nezávazná cenová nabídka do 24 h', 'Šetrné k materiálům i životnímu prostředí',].map((t) =>
+                    <li key={t} className="flex items-center gap-2">
+                      <span className="inline-flex w-5 h-5 items-center justify-center rounded-full bg-amber-100 text-[#ea6c00]">
+                        <Check className="w-3.5 h-3.5" strokeWidth={3} />
+                      </span>
+                      {t}
+                    </li>
+                  )}
+                </ul>
+              </Reveal>
+            </div>
+
+            {/* Visual column */}
+            <div className="lg:col-span-5 relative">
+              <Reveal delay={120}>
+                <div className="relative">
+                  {/* Orange glow */}
+                  <div className="absolute -inset-6 rounded-[2rem] blur-3xl opacity-40"
+                    style={{ background: 'radial-gradient(ellipse at center, #ea6c00 0%, #b84d00 50%, transparent 75%)' }}></div>
+                  <div className="relative rounded-[2rem] overflow-hidden shadow-2xl shadow-amber-900/20"
+                    style={{ aspectRatio: '4/5' }}>
+                    <img
+                      src="/public/foto1.jpg"
+                      alt="Profesionální čistění"
+                      style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                      onError={(e) => {
+                        e.target.style.display = 'none';
+                        e.target.nextSibling.style.display = 'flex';
+                      }}
+                    />
+                    {/* Fallback if image missing */}
+                    <div style={{ display: 'none', position: 'absolute', inset: 0 }}
+                      className="brand-gradient grain items-center justify-center">
+                      <div className="text-white/40 text-sm font-medium">/public/foto1</div>
+                    </div>
+                  </div>
+                  {/* Floating card 1 */}
+                  <div className="absolute -left-6 top-8 bg-white rounded-2xl shadow-xl border border-slate-100 px-4 py-3 flex items-center gap-3 w-[220px] hidden sm:flex">
+                    <div className="w-10 h-10 rounded-xl bg-amber-100 text-[#ea6c00] flex items-center justify-center">
+                      <Car className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <div className="text-xs text-slate-500">Právě dokončeno</div>
+                      <div className="text-sm font-semibold text-[#3a1f08]">Tepování Škoda Kodiaq</div>
+                    </div>
+                  </div>
+                  {/* Floating card 2 */}
+                  <div className="absolute -right-4 bottom-16 bg-white rounded-2xl shadow-xl border border-slate-100 px-4 py-3 w-[240px] hidden sm:block">
+                    <div className="flex items-center justify-between">
+                      <div className="text-xs text-slate-500">Hodnocení za tento týden</div>
+                    </div>
+                    <div className="mt-1 flex items-center gap-2">
+                      <div className="text-2xl font-extrabold text-[#3a1f08]">4,9</div>
+                      <div className="flex">
+                        {[0, 1, 2, 3, 4].map((i) => <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />)}
+                      </div>
+                    </div>
+                    <div className="mt-2 h-1.5 bg-slate-100 rounded-full overflow-hidden">
+                      <div className="h-full w-[96%] rounded-full bg-gradient-to-r from-[#f59445] to-[#ea6c00] shine"></div>
+                    </div>
+                  </div>
+
+                </div>
+              </Reveal>
+            </div>
+          </div>
+
+          {/* Client marquee */}
+          <div className="relative mt-20 max-w-7xl mx-auto px-5 sm:px-8">
+            <div className="text-xs uppercase tracking-[0.2em] text-slate-400 font-semibold text-center mb-5">
+              Důvěřují nám
+            </div>
+            <div className="overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_10%,black_90%,transparent)]">
+              <div className="marquee whitespace-nowrap items-center">
+                {[...Array(2)].flatMap((_, i) =>
+                  ['firma1.png', 'firma2.png', 'firma3.png', 'firma4.png', 'firma5.png', 'firma6.png', 'firma7.png'].map((name, j) =>
+                    <img
+                      key={`${i}-${j}`}
+                      src={`/public/${name}`}
+                      alt={name.replace('.png', '')}
+                      style={{ height: '40px', width: 'auto', maxWidth: '140px', objectFit: 'contain', opacity: 0.55, filter: 'grayscale(100%)', display: 'inline-block', verticalAlign: 'middle', flexShrink: 0 }}
+                    />
+                  )
+                )}
+              </div>
+            </div>
+          </div>
+        </section>);
+
+    }
+
+    /* ---------- Services ---------- */
+    function Services() {
+      const { get } = useLucide();
+      const Car = get('Car');
+      const Building2 = get('Building2');
+      const Droplets = get('Droplets');
+      const ArrowUpRight = get('ArrowUpRight');
+
+      const services = [
+        {
+          icon: Car,
+          tag: '01',
+          title: 'Čištění interiérů vozidel',
+          desc: 'Hloubkové tepování, péče o plasty, kůži a stropnici. Vrátíme vašemu vozu pocit nového auta uvnitř i venku.',
+          bullets: ['Tepování sedadel a koberců', 'Renovace kůže a plastů', 'Ozonizace proti pachům'],
+          accent: 'from-[#f59445] to-[#ea6c00]'
+        },
+        {
+          icon: Building2,
+          tag: '02',
+          title: 'Úklid prostor',
+          desc: 'Kanceláře, domácnosti i komerční objekty. Jednorázově nebo pravidelně s důrazem na detail a diskrétnost.',
+          bullets: ['Pravidelný i jednorázový úklid', 'Po-stavební úklidy', 'Mytí oken a výloh'],
+          accent: 'from-[#5a2e00] to-[#3a1f08]'
+        },
+        {
+          icon: Droplets,
+          tag: '03',
+          title: 'Vysokotlaké čištění',
+          desc: 'Fasády, dlažby, střechy a wapkování technikou Kärcher HDS. Rychle odstraníme mechy, lišejníky i mastnotu.',
+          bullets: ['Čištění fasád a omítek', 'Dlažby, chodníky, terasy', 'Střechy a okapové systémy'],
+          accent: 'from-[#f59445] to-[#ea6c00]'
+        }];
+
+
+      return (
+        <section id="sluzby" className="relative py-24 md:py-32 bg-white">
+          <div className="max-w-7xl mx-auto px-5 sm:px-8">
+            <Reveal>
+              <div className="max-w-2xl">
+                <div className="inline-flex items-center gap-2 text-xs font-semibold tracking-[0.2em] uppercase text-[#ea6c00]">
+                  <span className="w-8 h-px bg-[#ea6c00]"></span> Naše služby
+                </div>
+                <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#3a1f08] leading-tight">
+                  Tři obory. Jeden standard <span className="text-[#ea6c00]">dokonalý výsledek.</span>
+                </h2>
+                <p className="mt-5 text-lg text-slate-600 leading-relaxed">
+                  Ať potřebujete vyčistit interiér vozu, udržet firmu v provozní čistotě nebo vrátit fasádě původní barvu máme techniku i zkušené ruce.
+                </p>
+              </div>
+            </Reveal>
+
+            <div className="mt-14 grid md:grid-cols-3 gap-6 lg:gap-8">
+              {services.map((s, idx) => {
+                const Icon = s.icon;
+                return (
+                  <Reveal key={s.title} delay={idx * 120}>
+                    <div className="service-card group relative h-full bg-white border border-slate-200 rounded-3xl p-7 flex flex-col overflow-hidden">
+                      <div className="absolute top-0 right-0 w-40 h-40 rounded-full bg-gradient-to-br opacity-0 group-hover:opacity-10 transition-opacity blur-2xl"
+                        style={{ background: 'linear-gradient(135deg, #f59445, #b84d00)' }}></div>
+                      <div className="flex items-start justify-between">
+                        <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${s.accent} text-white flex items-center justify-center shadow-lg shadow-amber-900/15`}>
+                          <Icon className="w-6 h-6" strokeWidth={2} />
+                        </div>
+                        <span className="text-xs font-mono text-slate-400 tracking-widest">{s.tag}</span>
+                      </div>
+                      <h3 className="mt-6 text-xl font-bold text-[#3a1f08] leading-snug">{s.title}</h3>
+                      <p className="mt-3 text-slate-600 leading-relaxed">{s.desc}</p>
+                      <ul className="mt-5 space-y-2">
+                        {s.bullets.map((b) =>
+                          <li key={b} className="flex items-start gap-2 text-sm text-slate-700">
+                            <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#ea6c00] shrink-0"></span>
+                            {b}
+                          </li>
+                        )}
+                      </ul>
+                      <a href="#kontakt" className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-[#3a1f08] group-hover:text-[#ea6c00] transition-colors">
+                        Zjistit více
+                        <span className="w-7 h-7 inline-flex items-center justify-center rounded-full bg-slate-100 group-hover:bg-[#ea6c00] group-hover:text-white transition-all">
+                          <ArrowUpRight className="w-3.5 h-3.5" />
+                        </span>
+                      </a>
+                    </div>
+                  </Reveal>);
+
+              })}
+            </div>
+          </div>
+        </section>);
+
+    }
+
+    /* ---------- Benefits ---------- */
+    function Benefits() {
+      const { get } = useLucide();
+      const items = [
+        ['Wrench', 'Špičková technika', 'Profesionální extraktory, rotační trysky a chemie pro měkké i tvrdé povrchy.'],
+        ['Clock', 'Flexibilita termínů', 'Přijedeme i o víkendu nebo večer, po domluvě klidně příští den.'],
+        ['Sparkle', 'Pečlivost v detailu', 'Každá zakázka prochází vlastní kontrolou kvality před předáním.'],
+        ['Leaf', 'Šetrná chemie', 'Pracujeme s biologicky odbouratelnými prostředky bez agresivních pachů.'],
+        ['ShieldCheck', 'Pojištění a garance', 'Pojištěni do 5 mil. Kč a garance spokojenosti.'],
+        ['Receipt', 'Férová cena', 'Transparentní ceník bez skrytých příplatků. Platíte za výsledek, ne za nadbytek.']];
+
+      return (
+        <section id="proc-my" className="relative py-24 md:py-32 bg-slate-50">
+          <div className="absolute inset-0 dot-grid opacity-40 [mask-image:radial-gradient(ellipse_at_top,black_20%,transparent_70%)]"></div>
+          <div className="relative max-w-7xl mx-auto px-5 sm:px-8">
+            <div className="grid lg:grid-cols-12 gap-12 items-start">
+              <div className="lg:col-span-5">
+                <Reveal>
+                  <div className="inline-flex items-center gap-2 text-xs font-semibold tracking-[0.2em] uppercase text-[#ea6c00]">
+                    <span className="w-8 h-px bg-[#ea6c00]"></span> Proč si vybrat nás
+                  </div>
+                  <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#3a1f08] leading-tight">
+                    Šest důvodů, proč s námi klienti zůstávají roky.
+                  </h2>
+                  <p className="mt-5 text-lg text-slate-600 leading-relaxed">
+                    Nejsme nejlevnější. Jsme ti, díky kterým zapomenete, že se o úklid vůbec musíte starat.
+                  </p>
+                  <a href="#kontakt" className="btn-primary mt-8 inline-flex items-center gap-2 bg-[#3a1f08] hover:bg-[#5a2e00] text-white font-semibold px-6 py-3.5 rounded-full">
+                    Domluvit konzultaci
+                  </a>
+                </Reveal>
+              </div>
+              <div className="lg:col-span-7 grid sm:grid-cols-2 gap-4">
+                {items.map(([iconName, title, desc], idx) => {
+                  const Icon = get(iconName);
+                  return (
+                    <Reveal key={title} delay={idx * 80}>
+                      <div className="benefit-card h-full bg-white border border-slate-200 rounded-2xl p-6">
+                        <div className="w-11 h-11 rounded-xl bg-amber-50 text-[#ea6c00] flex items-center justify-center">
+                          <Icon className="w-5 h-5" strokeWidth={2} />
+                        </div>
+                        <h3 className="mt-4 font-bold text-[#3a1f08] text-lg">{title}</h3>
+                        <p className="mt-2 text-slate-600 leading-relaxed text-sm">{desc}</p>
+                      </div>
+                    </Reveal>);
+
+                })}
+              </div>
+            </div>
+          </div>
+        </section>);
+
+    }
+
+    /* ---------- Stats ---------- */
+    function Stats() {
+      const stats = [
+        ['500+', 'vyčištěných aut'],
+        ['1 200+', 'uklizených m²'],
+        ['98 %', 'opakovaných klientů'],
+        ['20 let', 'zkušeností v oboru']];
+
+      return (
+        <section id="reference" className="relative py-20 md:py-28 brand-gradient text-white overflow-hidden">
+          <div className="absolute inset-0 grain opacity-40"></div>
+          <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-amber-400/20 blur-3xl"></div>
+          <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-orange-400/10 blur-3xl"></div>
+          <div className="relative max-w-7xl mx-auto px-5 sm:px-8">
+            <div className="grid md:grid-cols-4 gap-8 md:gap-6">
+              {stats.map(([num, label], idx) =>
+                <Reveal key={label} delay={idx * 100}>
+                  <div className="text-center md:text-left">
+                    <div className="text-5xl md:text-6xl font-extrabold tracking-tight bg-gradient-to-b from-white to-[#ffd5a8] bg-clip-text text-transparent">
+                      {num}
+                    </div>
+                    <div className="mt-2 text-amber-100/80 text-sm font-medium uppercase tracking-wider">{label}</div>
+                  </div>
+                </Reveal>
+              )}
+            </div>
+
+            {/* Testimonial strip */}
+            <div className="mt-16 grid md:grid-cols-3 gap-5">
+              {[
+                ['„Přijel přesně na čas, interiér auta vypadá lépe než z autosalonu. Doporučuji.“', 'Petr H.', 'Rokycany'],
+                ['„Staráme se s nimi o dvě kanceláře už třetí rok. Žádné dohady, jen výsledek.“', 'Lucie M.', 'Plzeň'],
+                ['„Příjezdová cesta zase jako nová. Profesionalita od A do Z.“', 'Jakub K.', 'Plzeň']].
+                map(([quote, name, city], idx) =>
+                  <Reveal key={name} delay={idx * 120}>
+                    <div className="h-full bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6">
+                      <div className="text-amber-200 text-3xl leading-none font-serif">”</div>
+                      <p className="mt-2 text-white/90 leading-relaxed">{quote}</p>
+                      <div className="mt-5 flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#f59445] to-[#ea6c00] flex items-center justify-center font-bold text-[#3a1f08]">
+                          {name.charAt(0)}
+                        </div>
+                        <div>
+                          <div className="font-semibold text-white text-sm">{name}</div>
+                          <div className="text-xs text-amber-200/80">{city}</div>
+                        </div>
+                      </div>
+                    </div>
+                  </Reveal>
+                )}
+            </div>
+          </div>
+        </section>);
+
+    }
+
+    /* ---------- Contact ---------- */
+    function Contact() {
+      const { get } = useLucide();
+      const Phone = get('Phone');
+      const Mail = get('Mail');
+      const MapPin = get('MapPin');
+      const Clock = get('Clock');
+      const Send = get('Send');
+      const Check = get('Check');
+
+      const [form, setForm] = useState({ name: '', email: '', service: '', message: '' });
+      const [errors, setErrors] = useState({});
+      const [sent, setSent] = useState(false);
+
+      const update = (k) => (e) => setForm({ ...form, [k]: e.target.value });
+
+      const submit = (e) => {
+        e.preventDefault();
+        const err = {};
+        if (!form.name.trim()) err.name = 'Zadejte prosím jméno.';
+        if (!/^\S+@\S+\.\S+$/.test(form.email)) err.email = 'Zadejte platný e-mail.';
+        if (!form.service) err.service = 'Vyberte službu.';
+        if (form.message.trim().length < 5) err.message = 'Napište prosím krátkou zprávu.';
+        setErrors(err);
+        if (Object.keys(err).length === 0) {
+          setSent(true);
+          setTimeout(() => {
+            setSent(false);
+            setForm({ name: '', email: '', service: '', message: '' });
+          }, 4500);
+        }
+      };
+
+      return (
+        <section id="kontakt" className="relative py-24 md:py-32 bg-white">
+          <div className="max-w-7xl mx-auto px-5 sm:px-8">
+            <div className="grid lg:grid-cols-12 gap-10">
+              {/* Info column */}
+              <div className="lg:col-span-5">
+                <Reveal>
+                  <div className="inline-flex items-center gap-2 text-xs font-semibold tracking-[0.2em] uppercase text-[#ea6c00]">
+                    <span className="w-8 h-px bg-[#ea6c00]"></span> Kontakt
+                  </div>
+                  <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#3a1f08] leading-tight">
+                    Řekněte nám, co potřebujete.
+                  </h2>
+                  <p className="mt-5 text-lg text-slate-600 leading-relaxed">
+                    Odpovíme do 24 hodin s nezávaznou cenovou nabídkou na míru. Bez obchodního nátlaku, bez skrytých poplatků.
+                  </p>
+                </Reveal>
+
+                <div className="mt-8 space-y-4">
+                  {[
+                    [Phone, 'Zavolejte nám', '+420 606 513 793', 'tel:+420606513793'],
+                    [Mail, 'Napište nám', 'jdavidek@centrum.cz', 'mailto:jdavidek@centrum.cz'],
+                    [MapPin, 'Působíme', 'Plzeň a okolí', null],
+                    [Clock, 'Otevírací doba', 'Po–Pá · 7:00–20:00', null]].
+                    map(([Icon, label, value, href], idx) =>
+                      <Reveal key={label} delay={idx * 80}>
+                        <a href={href || '#'} className={`flex items-start gap-4 p-4 rounded-2xl border border-slate-200 hover:border-[#ea6c00] transition-colors ${href ? 'cursor-pointer' : 'pointer-events-none'}`}>
+                          <div className="w-11 h-11 rounded-xl bg-amber-50 text-[#ea6c00] flex items-center justify-center shrink-0">
+                            <Icon className="w-5 h-5" />
+                          </div>
+                          <div>
+                            <div className="text-xs uppercase tracking-wider text-slate-500 font-semibold">{label}</div>
+                            <div className="mt-0.5 font-semibold text-[#3a1f08]">{value}</div>
+                          </div>
+                        </a>
+                      </Reveal>
+                    )}
+                </div>
+              </div>
+
+              {/* Form column */}
+              <div className="lg:col-span-7">
+                <Reveal delay={120}>
+                  <form onSubmit={submit} className="relative bg-slate-50 border border-slate-200 rounded-3xl p-6 sm:p-10">
+                    <div className="absolute -top-3 left-8 inline-flex items-center gap-2 bg-[#3a1f08] text-white text-xs font-semibold uppercase tracking-wider px-3 py-1.5 rounded-full">
+                      Nezávazná poptávka
+                    </div>
+
+                    <div className="grid sm:grid-cols-2 gap-5">
+                      <div>
+                        <label className="text-sm font-semibold text-[#3a1f08]">Jméno a příjmení</label>
+                        <input type="text" value={form.name} onChange={update('name')}
+                          placeholder="Jan Novák"
+                          className={`field mt-2 w-full bg-white border ${errors.name ? 'border-red-400' : 'border-slate-200'} rounded-xl px-4 py-3 text-[#3a1f08] placeholder:text-slate-400`} />
+                        {errors.name && <p className="mt-1 text-xs text-red-500">{errors.name}</p>}
+                      </div>
+                      <div>
+                        <label className="text-sm font-semibold text-[#3a1f08]">E-mail</label>
+                        <input type="email" value={form.email} onChange={update('email')}
+                          placeholder="jan@email.cz"
+                          className={`field mt-2 w-full bg-white border ${errors.email ? 'border-red-400' : 'border-slate-200'} rounded-xl px-4 py-3 text-[#3a1f08] placeholder:text-slate-400`} />
+                        {errors.email && <p className="mt-1 text-xs text-red-500">{errors.email}</p>}
+                      </div>
+                    </div>
+
+                    <div className="mt-5">
+                      <label className="text-sm font-semibold text-[#3a1f08]">Služba</label>
+                      <div className="mt-2 grid sm:grid-cols-3 gap-2">
+                        {[
+                          ['auto', 'Čištění vozidel'],
+                          ['prostory', 'Úklid prostor'],
+                          ['wap', 'Vysokotlaké čištění']].
+                          map(([val, label]) => {
+                            const active = form.service === val;
+                            return (
+                              <button type="button" key={val}
+                                onClick={() => setForm({ ...form, service: val })}
+                                className={`px-4 py-3 rounded-xl border text-sm font-semibold transition-all ${active ?
+                                  'bg-[#3a1f08] border-[#3a1f08] text-white shadow-md' :
+                                  'bg-white border-slate-200 text-slate-700 hover:border-[#ea6c00]'}`
+                                }>
+                                {label}
+                              </button>);
+
+                          })}
+                      </div>
+                      {errors.service && <p className="mt-1 text-xs text-red-500">{errors.service}</p>}
+                    </div>
+
+                    <div className="mt-5">
+                      <label className="text-sm font-semibold text-[#3a1f08]">Zpráva</label>
+                      <textarea rows="4" value={form.message} onChange={update('message')}
+                        placeholder="Napište nám, co potřebujete vyčistit, případně velikost prostor / typ vozu…"
+                        className={`field mt-2 w-full bg-white border ${errors.message ? 'border-red-400' : 'border-slate-200'} rounded-xl px-4 py-3 text-[#3a1f08] placeholder:text-slate-400 resize-none`}></textarea>
+                      {errors.message && <p className="mt-1 text-xs text-red-500">{errors.message}</p>}
+                    </div>
+
+                    <div className="mt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                      <p className="text-xs text-slate-500 max-w-sm">
+                        Odesláním souhlasíte se zpracováním osobních údajů pro účely vyřízení poptávky.
+                      </p>
+                      <button type="submit"
+                        className={`btn-primary inline-flex items-center justify-center gap-2 font-semibold px-6 py-3.5 rounded-full transition-all ${sent ?
+                          'bg-emerald-500 text-white' :
+                          'bg-[#3a1f08] hover:bg-[#5a2e00] text-white'}`
+                        }>
+                        {sent ?
+                          <><Check className="w-4 h-4" strokeWidth={3} /> Odesláno — ozveme se</> :
+                          <>Odeslat poptávku <Send className="w-4 h-4" /></>}
+                      </button>
+                    </div>
+                  </form>
+                </Reveal>
+              </div>
+            </div>
+          </div>
+        </section>);
+
+    }
+
+    /* ---------- Footer ---------- */
+    function Footer({ navigate }) {
+      const { get } = useLucide();
+      const Facebook = get('Facebook');
+      const Instagram = get('Instagram');
+      const go = (page) => (e) => { e.preventDefault(); navigate(page); };
+      return (
+        <footer className="bg-[#120d0a] text-slate-400 border-t border-slate-800/60">
+          <div className="max-w-7xl mx-auto px-5 sm:px-8 py-16">
+            <div className="grid md:grid-cols-12 gap-10">
+              <div className="md:col-span-5">
+                <Logo dark />
+                <p className="mt-5 text-slate-400 leading-relaxed max-w-md">
+                  Profesionální úklidové služby pro automobily, prostory a venkovní plochy. Čistota, která je vidět i cítit.
+                </p>
+                <div className="mt-6 flex items-center gap-3">
+                  <a href="https://www.facebook.com/profile.php?id=61580433012749" target="_blank" rel="noopener noreferrer"
+                    className="w-10 h-10 rounded-full border border-slate-700/70 text-slate-400 hover:border-[#ea6c00] hover:text-[#ea6c00] hover:bg-[#ea6c00]/5 flex items-center justify-center transition-all">
+                    <Facebook className="w-4 h-4" />
+                  </a>
+                  <a href="https://www.instagram.com/ukliddavidek/" target="_blank" rel="noopener noreferrer"
+                    className="w-10 h-10 rounded-full border border-slate-700/70 text-slate-400 hover:border-[#ea6c00] hover:text-[#ea6c00] hover:bg-[#ea6c00]/5 flex items-center justify-center transition-all">
+                    <Instagram className="w-4 h-4" />
+                  </a>
+                </div>
+              </div>
+              <div className="md:col-span-3">
+                <div className="text-xs uppercase tracking-[0.2em] text-slate-500 font-semibold">Služby</div>
+                <ul className="mt-4 space-y-2.5 text-sm">
+                  <li><a href="#sluzby" onClick={() => navigate('home')} className="text-slate-400 hover:text-white transition-colors">Čištění vozidel</a></li>
+                  <li><a href="#sluzby" onClick={() => navigate('home')} className="text-slate-400 hover:text-white transition-colors">Úklid prostor</a></li>
+                  <li><a href="#sluzby" onClick={() => navigate('home')} className="text-slate-400 hover:text-white transition-colors">Vysokotlaké čištění</a></li>
+                </ul>
+              </div>
+              <div className="md:col-span-4">
+                <div className="text-xs uppercase tracking-[0.2em] text-slate-500 font-semibold">Kontakt</div>
+                <ul className="mt-4 space-y-2.5 text-sm text-slate-400">
+                  <li>+420 606 513 793</li>
+                  <li>jdavidek@centrum.cz</li>
+                  <li>Plzeň</li>
+                </ul>
+              </div>
+            </div>
+            <div className="mt-14 pt-6 border-t border-slate-800/70 flex flex-col md:flex-row items-start md:items-center justify-between gap-3 text-xs text-slate-500">
+              <div>© 2026 Jiří Davídek · IČO: 47747439 · DIČ: CZ7710122035</div>
+              <div className="flex items-center gap-5">
+                <a href="#" onClick={go('privacy')} className="hover:text-[#ea6c00] transition-colors">Ochrana osobních údajů</a>
+                <a href="#" onClick={go('terms')} className="hover:text-[#ea6c00] transition-colors">Obchodní podmínky</a>
+                <a href="#" onClick={go('cookies')} className="hover:text-[#ea6c00] transition-colors">Cookies</a>
+              </div>
+            </div>
+          </div>
+        </footer>);
+
+    }
+
+    /* ---------- Legal Page Shell ---------- */
+    function LegalPage({ title, kicker, updated, children, navigate }) {
+      const { get } = useLucide();
+      const ArrowLeft = get('ArrowLeft');
+      useEffect(() => { window.scrollTo(0, 0); }, []);
+      return (
+        <div className="min-h-screen bg-white">
+          <div className="brand-gradient text-white pt-28 pb-16 relative overflow-hidden">
+            <div className="absolute inset-0 grain opacity-40"></div>
+            <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-amber-400/10 blur-3xl"></div>
+            <div className="relative max-w-4xl mx-auto px-5 sm:px-8">
+              <button onClick={() => navigate('home')}
+                className="inline-flex items-center gap-2 text-sm font-semibold text-amber-200 hover:text-white transition-colors">
+                <ArrowLeft className="w-4 h-4" /> Zpět na hlavní stránku
+              </button>
+              <div className="mt-8 inline-flex items-center gap-2 text-xs font-semibold tracking-[0.2em] uppercase text-amber-200">
+              </div>
+              <h1 className="mt-3 text-4xl sm:text-5xl font-extrabold tracking-tight leading-[1.05]">{title}</h1>
+              <p className="mt-4 text-amber-200/80 text-sm">Poslední aktualizace: {updated}</p>
+            </div>
+          </div>
+          <article className="max-w-3xl mx-auto px-5 sm:px-8 py-16 md:py-20 prose-legal">
+            {children}
+          </article>
+        </div>
+      );
+    }
+
+    function PrivacyPage({ navigate }) {
+      return (
+        <LegalPage title="Ochrana osobních údajů" kicker="GDPR" updated="1. dubna 2026" navigate={navigate}>
+          <p className="lead">Společnost CleanPro s.r.o. (dále jen „správce") zpracovává vaše osobní údaje v souladu s Nařízením Evropského parlamentu a Rady (EU) 2016/679 (GDPR) a zákonem č. 110/2019 Sb., o zpracování osobních údajů.</p>
+
+          <h2>1. Správce osobních údajů</h2>
+          <p>Jiří Davídek, se sídlem U Školky 7, IČO: 123 45 678, zapsaná v obchodním rejstříku vedeném Městským soudem v Praze, oddíl C. Kontaktní e-mail: <a href="mailto:jdavidek@centrum.cz">jdavidek@centrum.cz</a>.</p>
+
+          <h2>2. Jaké údaje zpracováváme</h2>
+          <p>Zpracováváme pouze osobní údaje, které nám dobrovolně poskytnete prostřednictvím kontaktního formuláře, e-mailu nebo telefonu:</p>
+          <ul>
+            <li>identifikační údaje: jméno a příjmení,</li>
+            <li>kontaktní údaje: e-mail, telefon, adresa,</li>
+            <li>obsah zprávy a údaje o požadované službě.</li>
+          </ul>
+
+          <h2>3. Účel a právní základ zpracování</h2>
+          <p>Vaše údaje zpracováváme zejména za účelem zpracování poptávky, uzavření a plnění smlouvy o poskytnutí služeb a v nezbytném rozsahu pro plnění zákonných povinností (zejména daňových a účetních).</p>
+
+          <h2>4. Doba uchování</h2>
+          <p>Osobní údaje uchováváme po dobu nezbytně nutnou k naplnění výše uvedených účelů, nejdéle však po dobu 10 let od posledního plnění smlouvy.</p>
+
+          <h2>5. Vaše práva</h2>
+          <p>V souladu s GDPR máte právo na přístup ke svým údajům, opravu, výmaz, omezení zpracování, přenositelnost údajů a právo vznést námitku. Svá práva můžete uplatnit e-mailem na adrese <a href="mailto:jdavidek@centrum.cz">jdavidek@centrum.cz</a>.</p>
+
+          <h2>6. Zabezpečení</h2>
+          <p>Přijímáme veškerá přiměřená technická a organizační opatření k zabezpečení vašich osobních údajů před neoprávněným přístupem, ztrátou či zneužitím.</p>
+        </LegalPage>
+      );
+    }
+
+    function TermsPage({ navigate }) {
+      return (
+        <LegalPage title="Obchodní podmínky" kicker="Smluvní ujednání" updated="1. dubna 2026" navigate={navigate}>
+          <p className="lead">Tyto obchodní podmínky (dále jen „OP") upravují smluvní vztah mezi společností CleanPro s.r.o. a objednatelem úklidových služeb. Objednáním služby vyjadřuje objednatel souhlas s těmito podmínkami.</p>
+
+          <h2>1. Úvodní ustanovení</h2>
+          <p>Poskytovatelem služeb je CleanPro s.r.o., IČO: 123 45 678. Předmětem plnění jsou úklidové a čisticí služby dle aktuální nabídky poskytovatele.</p>
+
+          <h2>2. Objednávka a uzavření smlouvy</h2>
+          <p>Smlouva vzniká potvrzením objednávky ze strany poskytovatele, a to e-mailem nebo telefonicky. Předmět, rozsah, termín a cena jsou vždy stanoveny individuálně na základě cenové nabídky.</p>
+
+          <h2>3. Cena a platební podmínky</h2>
+          <p>Cena služby je stanovena podle platného ceníku nebo individuální kalkulace. Nejsme-li výslovně ujednáno jinak, je cena splatná do 14 dnů od doručení faktury na bankovní účet poskytovatele.</p>
+
+          <h2>4. Provedení služby</h2>
+          <p>Poskytovatel se zavazuje provést službu řádně, s odbornou péčí a v dohodnutém termínu. Objednatel je povinen zajistit přístup k místu plnění a součinnost nezbytnou k provedení služby.</p>
+
+          <h2>5. Reklamace</h2>
+          <p>Případné vady plnění je objednatel povinen oznámit nejpozději do 3 pracovních dnů od předání díla. Oprávněná reklamace bude vyřízena zejména bezplatným dodatečným provedením služby.</p>
+
+          <h2>6. Odstoupení od smlouvy</h2>
+          <p>Objednatel je oprávněn odstoupit od smlouvy nejpozději 24 hodin před sjednaným termínem plnění. Při pozdějším zrušení může poskytovatel účtovat storno poplatek ve výši 30 % ceny.</p>
+
+          <h2>7. Závěrečná ustanovení</h2>
+          <p>Tyto OP se řídí právním řádem České republiky, zejména zákonem č. 89/2012 Sb., občanským zákoníkem.</p>
+        </LegalPage>
+      );
+    }
+
+    function CookiesPage({ navigate }) {
+      return (
+        <LegalPage title="Zásady používání cookies" kicker="Cookies" updated="1. dubna 2026" navigate={navigate}>
+          <p className="lead">Na webu cleanpro.cz používáme soubory cookies za účelem zajištění správné funkčnosti stránek, analýzy návštěvnosti a zlepšení uživatelského zážitku.</p>
+
+          <h2>1. Co jsou cookies</h2>
+          <p>Cookies jsou malé textové soubory, které se ukládají do vašeho zařízení prostřednictvím webového prohlížeče. Slouží k rozpoznání vašeho zařízení při opakované návštěvě a k zapamatování vašich preferencí.</p>
+
+          <h2>2. Jaké cookies používáme</h2>
+          <ul>
+            <li><strong>Nezbytné</strong> — zajišťují základní funkce webu (např. zabezpečení, nastavení jazyka). Tyto cookies nelze odmítnout.</li>
+            <li><strong>Analytické</strong> — pomáhají nám měřit návštěvnost a zlepšovat obsah (Google Analytics).</li>
+            <li><strong>Marketingové</strong> — slouží k zobrazování relevantní reklamy na partnerských webech.</li>
+          </ul>
+
+          <h2>3. Doba uchování</h2>
+          <p>Cookies uchováváme po dobu od jednoho sezení až po 24 měsíců v závislosti na typu cookie.</p>
+
+          <h2>4. Správa cookies</h2>
+          <p>Svůj souhlas s používáním cookies můžete kdykoli změnit nebo odvolat v nastavení vašeho prohlížeče. Upozorňujeme, že zakázání nezbytných cookies může omezit funkčnost webu.</p>
+
+          <h2>5. Kontakt</h2>
+          <p>Máte-li k používání cookies dotazy, kontaktujte nás na <a href="mailto:jdavidek@centrum.cz">jdavidek@centrum.cz</a>.</p>
+        </LegalPage>
+      );
+    }
+
+    /* ---------- Cookie Banner ---------- */
+    function CookieBanner({ onClose }) {
+      const { get } = useLucide();
+      const Cookie = get('Cookie');
+      const X = get('X');
+      const [visible, setVisible] = useState(false);
+      useEffect(() => {
+        const t = setTimeout(() => setVisible(true), 600);
+        return () => clearTimeout(t);
+      }, []);
+      const dismiss = (choice) => {
+        setVisible(false);
+        setTimeout(() => onClose(choice), 250);
+      };
+      return (
+        <div aria-live="polite"
+          className={`fixed bottom-4 inset-x-4 md:inset-x-auto md:right-6 md:bottom-6 md:max-w-md z-[60] transition-all duration-300 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'
+            }`}>
+          <div className="relative bg-white border border-slate-200 rounded-2xl shadow-2xl shadow-slate-900/10 p-5 sm:p-6">
+            <button onClick={() => dismiss('decline')} aria-label="Zavřít"
+              className="absolute top-3 right-3 w-8 h-8 rounded-full hover:bg-slate-100 flex items-center justify-center text-slate-400 hover:text-slate-700 transition-colors">
+              <X className="w-4 h-4" />
+            </button>
+            <div className="flex items-start gap-3">
+              <div className="w-10 h-10 rounded-xl bg-amber-50 text-[#ea6c00] flex items-center justify-center shrink-0">
+                <Cookie className="w-5 h-5" />
+              </div>
+              <div>
+                <h3 className="font-bold text-[#3a1f08] text-base">Používáme cookies 🍪</h3>
+                <p className="mt-1.5 text-sm text-slate-600 leading-relaxed">
+                  Pro správné fungování webu a analýzu návštěvnosti používáme soubory cookies. Svůj souhlas můžete kdykoli odvolat.
+                </p>
+              </div>
+            </div>
+            <div className="mt-5 flex flex-col sm:flex-row gap-2 sm:gap-3">
+              <button onClick={() => dismiss('accept')}
+                className="btn-primary flex-1 bg-[#3a1f08] hover:bg-[#5a2e00] text-white text-sm font-semibold px-4 py-2.5 rounded-full transition-all">
+                Přijmout
+              </button>
+              <button onClick={() => dismiss('decline')}
+                className="btn-secondary flex-1 bg-white border-2 border-slate-200 hover:border-[#3a1f08] text-[#3a1f08] text-sm font-semibold px-4 py-2.5 rounded-full transition-all">
+                Odmítnout
+              </button>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    /* ---------- App ---------- */
+    function App() {
+      const [page, setPage] = useState('home');
+      const [showCookie, setShowCookie] = useState(true); // always on every load
+
+      const navigate = (p) => {
+        setPage(p);
+        window.scrollTo(0, 0);
+      };
+
+      return (
+        <div className="min-h-screen bg-white">
+          {page === 'home' && (
+            <>
+              <Header />
+              <main>
+                <Hero />
+                <Services />
+                <Benefits />
+                <Stats />
+                <Contact />
+              </main>
+            </>
+          )}
+          {page === 'privacy' && <PrivacyPage navigate={navigate} />}
+          {page === 'terms' && <TermsPage navigate={navigate} />}
+          {page === 'cookies' && <CookiesPage navigate={navigate} />}
+          <Footer navigate={navigate} />
+          {showCookie && <CookieBanner onClose={() => setShowCookie(false)} />}
+        </div>);
+
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+  </script>
+</body>
+
+</html>
