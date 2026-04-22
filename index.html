@@ -169,6 +169,13 @@
       animation: marquee 36s linear infinite;
     }
 
+    @media (max-width: 768px) {
+      .marquee {
+        gap: 2.5rem;
+        animation-duration: 6s;
+      }
+    }
+
     @keyframes marquee {
       0% {
         transform: translateX(0);
@@ -502,7 +509,7 @@
                   pro vaše <span className="relative inline-block">
                     <span className="relative z-10 text-[#ea6c00]">auta i prostory</span>
                     <span className="absolute left-0 right-0 bottom-1 h-3 bg-amber-200/70 -z-0 rounded"></span>
-                  </span>.
+                  </span>
                 </h1>
               </Reveal>
               <Reveal delay={160}>
