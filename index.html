@@ -4,6 +4,28 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MGNLS8DK3N"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+
+    // Consent Mode v2 — výchozí stav: vše odepřeno (GDPR/ePrivacy)
+    // Po udělení souhlasu uživatelem zavolej gtag('consent', 'update', {...}) se 'granted'
+    gtag('consent', 'default', {
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      analytics_storage: 'denied',
+      functionality_storage: 'denied',
+      personalization_storage: 'denied',
+      security_storage: 'granted', // bezpečnostní cookies nepotřebují souhlas
+      wait_for_update: 500        // ms – čeká na CMP před odesláním hitu
+    });
+
+    gtag('js', new Date());
+    gtag('config', 'G-MGNLS8DK3N', { anonymize_ip: true });
+  </script>
   <title>Čištění aut a úklid Plzeň | Jiří Davídek – čisticí služby</title>
   <meta name="description"
     content="Profesionální čištění interiérů aut, tepování, úklid kanceláří a vysokotlaké čištění v Plzni a okolí. Nezávazná cenová nabídka do 24 h. Tel: +420 606 513 793." />
@@ -1213,7 +1235,7 @@
     /* ---------- App ---------- */
     function App() {
       const [page, setPage] = useState('home');
-      const [showCookie, setShowCookie] = useState(true); // always on every load
+      const [showCookie, setShowCookie] = useState(!localStorage.getItem('cookieConsent'));
 
       const navigate = (p) => {
         setPage(p);
@@ -1238,13 +1260,41 @@
           {page === 'terms' && <TermsPage navigate={navigate} />}
           {page === 'cookies' && <CookiesPage navigate={navigate} />}
           <Footer navigate={navigate} />
-          {showCookie && <CookieBanner onClose={() => setShowCookie(false)} />}
+          {showCookie && <CookieBanner onClose={(choice) => {
+            window.updateConsent(choice === 'accept');
+            setShowCookie(false);
+          }} />}
         </div>);
 
     }
 
     const root = ReactDOM.createRoot(document.getElementById('root'));
     root.render(<App />);
+  </script>
+
+  <!-- Consent Mode v2 – helper pro cookie banner
+       Použití po souhlasu:   window.updateConsent(true)
+       Použití po odmítnutí:  window.updateConsent(false)
+  -->
+  <script>
+    window.updateConsent = function (granted) {
+      const state = granted ? 'granted' : 'denied';
+      gtag('consent', 'update', {
+        ad_storage: state,
+        ad_user_data: state,
+        ad_personalization: state,
+        analytics_storage: state,
+        functionality_storage: state,
+        personalization_storage: state
+      });
+      localStorage.setItem('cookieConsent', granted ? 'granted' : 'denied');
+    };
+
+    // Obnovit souhlas z předchozí návštěvy
+    (function () {
+      const saved = localStorage.getItem('cookieConsent');
+      if (saved) window.updateConsent(saved === 'granted');
+    })();
   </script>
 </body>
 
