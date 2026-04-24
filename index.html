@@ -668,7 +668,6 @@
       const services = [
         {
           icon: Car,
-          tag: '01',
           title: 'Čištění interiérů vozidel',
           desc: 'Hloubkové tepování, péče o plasty, kůži a stropnici. Vrátíme vašemu vozu pocit nového auta uvnitř i venku.',
           bullets: ['Tepování sedadel a koberců', 'Renovace kůže a plastů', 'Ozonizace proti pachům'],
@@ -676,7 +675,6 @@
         },
         {
           icon: Building2,
-          tag: '02',
           title: 'Úklid prostor',
           desc: 'Kanceláře, domácnosti i komerční objekty. Jednorázově nebo pravidelně s důrazem na detail a diskrétnost.',
           bullets: ['Pravidelný i jednorázový úklid', 'Po-stavební úklidy', 'Mytí oken a výloh'],
@@ -684,7 +682,6 @@
         },
         {
           icon: Droplets,
-          tag: '03',
           title: 'Vysokotlaké čištění',
           desc: 'Fasády, dlažby, střechy a wapkování technikou Kärcher HDS. Rychle odstraníme mechy, lišejníky i mastnotu.',
           bullets: ['Čištění fasád a omítek', 'Dlažby, chodníky, terasy', 'Střechy a okapové systémy'],
@@ -806,8 +803,8 @@
     /* ---------- Stats ---------- */
     function Stats() {
       const stats = [
-        ['500+', 'vyčištěných aut'],
-        ['1 200+', 'uklizených m²'],
+        ['1 000+', 'vyčištěných aut'],
+        ['1 500+', 'uklizených m²'],
         ['98 %', 'opakovaných klientů'],
         ['20 let', 'zkušeností v oboru']];
 
@@ -914,7 +911,7 @@
                   {[
                     [Phone, 'Zavolejte nám', '+420 606 513 793', 'tel:+420606513793'],
                     [Mail, 'Napište nám', 'jdavidek@centrum.cz', 'mailto:jdavidek@centrum.cz'],
-                    [MapPin, 'Působíme', 'Plzeň a okolí', null],
+                    [MapPin, 'Působíme', 'Plzeň a okolí', 'https://maps.google.com/?q=Karlovarská+490/24,+Plzeň'],
                     [Clock, 'Otevírací doba', 'Po–Pá · 7:00–20:00', null]].
                     map(([Icon, label, value, href], idx) =>
                       <Reveal key={label} delay={idx * 80}>
